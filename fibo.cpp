@@ -245,13 +245,25 @@ vector<int> dijkstra_fibonacci(list< pair<int, int> > *adj,int V,int src)
 {  
     vector<int> dist(V, INF); 
 
+    int nins = 0,nerase = 0, start, stop;
+    double tins = 0, terase = 0;
+
+    start = clock();
     insert(make_pair(0, src)); 
+    stop = clock();
+    tins += (stop-start)/double(CLOCKS_PER_SEC)*1000;
+    nins++;
     dist[src] = 0; 
 
     while (!empty()) 
     { 
-        pair<int, int> tmp = make_pair(root->key,root->vertex); 
+        pair<int, int> tmp = make_pair(root->key,root->vertex);
+        start = clock(); 
         erase(tmp); 
+        stop = clock();
+        terase += (stop-start)/double(CLOCKS_PER_SEC)*1000;
+        nerase++;
+        // dist[src] = 0;
   
         int u = tmp.second; 
   
@@ -264,19 +276,31 @@ vector<int> dijkstra_fibonacci(list< pair<int, int> > *adj,int V,int src)
   
             if (dist[v] > dist[u] + weight) 
             { 
-                if (dist[v] != INF) 
-                    erase(make_pair(dist[v], v)); 
+                if (dist[v] != INF)
+                {
+                    start = clock();
+                    erase(make_pair(dist[v], v));
+                    stop = clock();
+                    terase += (stop-start)/double(CLOCKS_PER_SEC)*1000;
+                    nerase++;
+                }  
   
-                dist[v] = dist[u] + weight; 
-                insert(make_pair(dist[v], v)); 
+                dist[v] = dist[u] + weight;
+                start = clock(); 
+                insert(make_pair(dist[v], v));
+                // cerr << "after insert" << endl; 
+                stop = clock();
+                tins += (stop-start)/double(CLOCKS_PER_SEC)*1000;
+                nins++;
             } 
         } 
     } 
 
+    cout << "insert " << tins << " erase " << terase << endl;
     return dist;
 }
 
-void fibo_display(vector<int> dist,int V)
+void display_fibo(vector<int> dist,int V)
 {
     printf("Vertex   Distance from Source\n"); 
     for (int i = 0; i < V; ++i) 
