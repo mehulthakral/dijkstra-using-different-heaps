@@ -138,7 +138,7 @@ vector<int> dijkstra_binary(list< pair<int, int> > *adj,int V,int src)
             } 
         } 
     } 
-	cout << "insert " << tins << " erase " << terase << endl;
+	cout << "insert " << tins/nins << " erase " << terase/nerase << endl;
     return dist;
 }
 
