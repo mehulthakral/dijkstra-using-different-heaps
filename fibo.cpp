@@ -296,7 +296,7 @@ vector<int> dijkstra_fibonacci(list< pair<int, int> > *adj,int V,int src)
         } 
     } 
 
-    cout << "insert " << tins << " erase " << terase << endl;
+    cout << "insert " << tins/nins << " erase " << terase/nerase << endl;
     return dist;
 }
 
