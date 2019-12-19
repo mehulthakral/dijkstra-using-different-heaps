@@ -10,5 +10,3 @@ typedef struct Data
 } Data;
 
 vector<int> dijkstra_binary(list< pair<int, int> > *adj,int v,int src);
-
-void display_binary(vector<int> dist,int V);

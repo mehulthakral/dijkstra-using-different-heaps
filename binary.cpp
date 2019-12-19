@@ -35,32 +35,7 @@ void Heapify(Data *A, int n, int k)
 		Heapify(A,n,j);
 	}
 }
-/*
-int main()
-{
-	struct timespec start,end;
-	
-	int n,i;
-	scanf("%d",&n);
-	
-	Data A[n+1];
-	for(i=1;i<=n;i++)
-	{
-		scanf("%d %d",&A[i].id,&A[i].value);
-	}
-	
-	clock_gettime(CLOCK_REALTIME,&start);
-	HeapBottomUp(A,n);
-	clock_gettime(CLOCK_REALTIME,&end);
-	
-	for(i=1;i<=n;i++)
-	{
-		printf("%d %d\n",A[i].id,A[i].value);
-	}
-	printf("%lf\n",end.tv_sec-start.tv_sec+(end.tv_nsec-start.tv_nsec)*0.000000001);
-	return 0;
-}
-*/
+
 void erase_binary(pair<int,int> p) 
 { 
     for(int i=1;i<=l;i++)
@@ -104,9 +79,9 @@ vector<int> dijkstra_binary(list< pair<int, int> > *adj,int V,int src)
         start = clock(); 
         erase_binary(tmp); 
         stop = clock();
-        terase += (stop-start)/double(CLOCKS_PER_SEC)*1000;
+		terase += (stop-start)/double(CLOCKS_PER_SEC)*1000;
         nerase++;
-  
+
         int u = tmp.second; 
   
         list< pair<int, int> >::iterator i; 
@@ -119,32 +94,23 @@ vector<int> dijkstra_binary(list< pair<int, int> > *adj,int V,int src)
             if (dist[v] > dist[u] + weight) 
             { 
                 if (dist[v] != INF) 
-                {
-                    start = clock();
-                    erase_binary(make_pair(dist[v], v));
-                    // cerr << "after erase" << endl;
-                    stop = clock();
-                    terase += (stop-start)/double(CLOCKS_PER_SEC)*1000;
-                    nerase++;
-                }  
+				{
+					start = clock();
+					erase_binary(make_pair(dist[v], v));
+					stop = clock();
+					terase += (stop-start)/double(CLOCKS_PER_SEC)*1000;
+					nerase++;
+				}
   
                 dist[v] = dist[u] + weight; 
                 start = clock(); 
                 insert_binary(make_pair(dist[v], v));
-                // cerr << "after insert" << endl; 
                 stop = clock();
                 tins += (stop-start)/double(CLOCKS_PER_SEC)*1000;
-                nins++;
+                nins++; 
             } 
         } 
     } 
-	cout << "insert " << tins/nins << " erase " << terase/nerase << endl;
+	cout << "Per operation for binary: "<< "insert " << tins << " erase " << terase << endl;
     return dist;
-}
-
-void display_binary(vector<int> dist,int V)
-{
-    printf("Vertex   Distance from Source\n"); 
-    for (int i = 0; i < V; ++i) 
-        printf("%d \t\t %d\n", i, dist[i]);
 }

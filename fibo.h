@@ -15,4 +15,4 @@ struct node {
 }; 
 
 vector<int> dijkstra_fibonacci(list< pair<int, int> > *adj,int v,int src);
-void display_fibo(vector<int> dist,int V);
+void display(vector<int> dist,int V);
