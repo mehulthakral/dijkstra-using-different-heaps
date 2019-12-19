@@ -1,5 +1,7 @@
 # dijkstra-using-different-heaps
-Implementing Dijkstra's algorithm which is used to find single source shortest path in both directed and un-directed graphs.
+Implementing Dijkstra's algorithm which is used to find single source shortest path in both directed and un-directed graphs and comparing performance when implemented with fibonacci, binomial and binary heaps.<br>
+
+<i>Refer AA_report.pdf for dataset and implementation details</i>
 
 <h3>Steps to execute</h3>
 <ul>
